@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route element={<RequireAuth />}>
-            <Route path="/Profile" element={<Profile />} />
+            <Route path="/Profile/*" element={<Profile />} />
             <Route path="/SinglePost/:id" element={<SinglePost />} />
           </Route>
           <Route path="/" element={<Home />} />
