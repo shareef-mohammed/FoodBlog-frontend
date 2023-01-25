@@ -1,0 +1,16 @@
+routes:
+  - src: /
+    dest: /
+    type: redirect
+  - src: /Posts
+    dest: /Posts
+    type: redirect
+  - src: /Profile
+    dest: /Profile
+    type: redirect
+  - src: /SinglePost/:id
+    dest: /SinglePost/:id
+    type: redirect
+  - src: /Admin/Login
+    dest: /Admin/Login
+    type: redirect
