@@ -151,7 +151,7 @@ const PostsContent = ({ home, category, page }) => {
     
     const { offsetHeight, scrollTop, scrollHeight } = e.target;
     if (offsetHeight + scrollTop >= scrollHeight-500) {
-      console.log('jjjj')
+      
       if (isEnd) {
         setLoading(false);
       } else {

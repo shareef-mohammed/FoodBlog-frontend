@@ -8,6 +8,7 @@ import ReportOnPost from "../ReportOnPost/ReportOnPost";
 import { useSelector } from "react-redux";
 import { selectCurrentToken } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LikeAndShare = ({ id, user, user1, postedUser }) => {
   const [like, setLike] = useState(false);
@@ -69,7 +70,16 @@ const LikeAndShare = ({ id, user, user1, postedUser }) => {
           console.log(err);
         });
     } else {
-      console.log("not logged in ");
+      toast.error("You are Logged in.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
