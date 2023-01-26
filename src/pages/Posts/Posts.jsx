@@ -10,10 +10,11 @@ import PostsContent from "../../components/PostsContent/PostsContent";
 
 const Posts = () => {
   const [user, setUser] = useState("");
-  const token = useSelector(selectCurrentUser);
+  const token = useSelector(selectCurrentToken);
+  const name = useSelector(selectCurrentUser)
   useEffect(() => {
     if (token) {
-      fetch(`${process.env.REACT_APP_BASEURL}/user/details`, {
+      fetch(`${process.env.REACT_APP_BASEURL}/user/details/${name}`, {
         headers: {
           "Content-Type": "application/json",
           "X-Custom-Header": `${token}`,

@@ -47,6 +47,7 @@ function App() {
           <Route path="/User/Register" element={<Register />} />
           <Route path="/User/ForgotPassword" element={<ForgotPassword />} />
           <Route path="/PageNotFound" element={<PageNotFound /> } />
+          <Route path="*" element={<PageNotFound /> } />
         </Route>
       </Routes>
       <ToastContainer />
