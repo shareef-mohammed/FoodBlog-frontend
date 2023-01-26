@@ -15,7 +15,7 @@ const Posts = ({ user, data }) => {
   const singlePost = (id) => {
     setLoader(true);
     setTimeout(() => {
-      navigate(`/singlePost/${id}`);
+      navigate(`/SinglePost/${id}`);
       setLoader(false);
     }, 1000);
   };
