@@ -105,7 +105,7 @@ const LikeAndShare = ({ id, user, user1, postedUser }) => {
       <RWebShare
         data={{
           text: "Share the post",
-          url: `http://localhost:3000/singlePost/${id}`,
+          url: `https://foodiefrontier.onrender.com/SinglePost/${id}`,
           title: "Share Post",
         }}
         onClick={() => console.log("shared successfully!")}

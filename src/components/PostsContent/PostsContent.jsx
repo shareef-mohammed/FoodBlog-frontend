@@ -203,7 +203,7 @@ const PostsContent = ({ home, category, page }) => {
         <Posts user={user} data={search(posts)} />
 
         {loading && <ContentLoader />}
-        {isEnd && (
+        {isEnd && posts.length > 0 && (
           <h1 className="text-center py-4 text-[#16a34a]">
             You have reached the end
           </h1>
