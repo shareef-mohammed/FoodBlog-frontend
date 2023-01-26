@@ -13,7 +13,7 @@ const RequireAuth = () => {
     <>
       <Navigate to="/" state={{ from: location }} replace />
     {
-      toast.error("Please Login to your accound..!", {
+      toast.error("Please Login to your account..!", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
