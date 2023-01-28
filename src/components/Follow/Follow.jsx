@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu, AiFillMessage } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectCurrentToken } from "../../features/auth/authSlice";
@@ -115,7 +115,8 @@ const Follow = ({ user, pos }) => {
         {user._id === pos.details[0]._id ? (
           ""
         ) : (
-          <button
+          <div className="flex">
+            <button
             onClick={() => followUser(pos.details[0]._id)}
             className={
               follow
@@ -125,20 +126,23 @@ const Follow = ({ user, pos }) => {
           >
             {follow ? "Unfollow" : "Follow"}
           </button>
+            {
+              follow && <AiFillMessage onClick={() => navigate('/Chat')} className="ml-4 w-8 mt-3 text-pink-400 cursor-pointer h-8" />
+            }
+          </div>
         )}
       </div>
-
-      <div onClick={handleHide} className="block md:hidden ">
+      <div onClick={handleHide} className="block md:hidden">
         {hide && <AiOutlineMenu size={20} className="" />}
       </div>
       <div
         className={
           !hide
-            ? "fixed right-0 top-20 w-[50%]  border-l-2 h-screen bg-white ease-in-out duration-700"
+            ? "fixed right-0 top-20 w-[50%] border-l-2 h-screen bg-white ease-in-out duration-700"
             : "hidden"
         }
       >
-        <div className="pt-8 pl-4 ">
+        <div className="pt-8 pl-4">
           <AiOutlineClose size={20} onClick={hidebar} />
           <img
             className="h-28 w-28 rounded-full my-3 "

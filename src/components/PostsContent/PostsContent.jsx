@@ -30,7 +30,7 @@ const PostsContent = ({ home, category, page }) => {
   const token = useSelector(selectCurrentToken);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BASEURL}/user/details/${name}`, {
+    fetch(`${process.env.REACT_APP_BASEURL}/user/details`, {
       headers: {
         "Content-Type": "application/json",
         "X-Custom-Header": `${token}`,
