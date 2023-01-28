@@ -30,15 +30,30 @@ const overlay_style = {
   zIndex: 1000,
 };
 
-const Location = ({ opened, onClose, user, button }) => {
+const Location = ({ opened, onClose, button }) => {
   const [places, setPlaces] = useState([]);
   const [load, setLoad] = useState(false);
+  const [user, setUser] = useState('')
   const token = useSelector(selectCurrentToken)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const id = user._id;
+  
   
   useEffect(() => {
+    fetch(`${process.env.REACT_APP_BASEURL}/user/details`, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Custom-Header": `${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data.details);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  
     fetch(`${process.env.REACT_APP_BASEURL}/posts/Locations`, {
       headers: {
         "Content-Type": "application/json",
@@ -58,6 +73,7 @@ const Location = ({ opened, onClose, user, button }) => {
   }, [user]);
 
   const setLocality = (place) => {
+    const id = user._id;
     fetch(`${process.env.REACT_APP_BASEURL}/user/setLocality`, {
       method: "PUT",
       headers: {
