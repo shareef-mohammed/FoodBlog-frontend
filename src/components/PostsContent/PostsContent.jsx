@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { BsArrowRightCircleFill, BsFillStarFill } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentToken, selectCurrentUser } from "../../features/auth/authSlice";
@@ -9,8 +8,8 @@ import Loader from "../Loader/Loader";
 import Posts from "./Posts";
 import Filter from "./Filter";
 import { useCallback } from "react";
-import LocateButton from "../Location/LocateButton";
 import AddPost from "../AddPost/AddPost";
+import { selectCurrentLocation } from "../../features/location/LocationSlice";
 
 const PostsContent = ({ home, category, page }) => {
   const [posts, setPosts] = useState([]);
@@ -30,8 +29,8 @@ const PostsContent = ({ home, category, page }) => {
 
   const name = useSelector(selectCurrentUser);
   const token = useSelector(selectCurrentToken);
-
-  
+  const location = useSelector(selectCurrentLocation);
+    
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BASEURL}/user/details`, {
       headers: {
@@ -76,7 +75,7 @@ const PostsContent = ({ home, category, page }) => {
     if (!filter) {
       fetchPost();
     }
-  }, [skip, query]);
+  }, [skip, query, location]);
 
   const read = async (skip) => {
     if (category) {

@@ -4,8 +4,10 @@ import Loader from "../Loader/Loader";
 import { AiOutlineClose } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import {setLocationCredentials} from "../../features/location/LocationSlice"
 import { selectCurrentToken, selectCurrentUser } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Register_style = {
   position: "fixed",
@@ -33,6 +35,7 @@ const Location = ({ opened, onClose, user, button }) => {
   const [load, setLoad] = useState(false);
   const token = useSelector(selectCurrentToken)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const id = user._id;
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BASEURL}/posts/Locations`, {
@@ -74,6 +77,7 @@ const Location = ({ opened, onClose, user, button }) => {
         }
         if (data.status === true) {
           setTimeout(() => {
+            dispatch(setLocationCredentials(place));
             onClose();
             setLoad(false);
             toast.success("Location added successfully", {

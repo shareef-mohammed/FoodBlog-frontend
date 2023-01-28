@@ -28,7 +28,7 @@ const LocateButton = ({ page }) => {
           console.log(err);
         });
     }
-  }, []);
+  }, [location]);
 
   if (location)
     return (
