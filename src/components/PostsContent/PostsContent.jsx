@@ -29,8 +29,8 @@ const PostsContent = ({ home, category, page }) => {
 
   const name = useSelector(selectCurrentUser);
   const token = useSelector(selectCurrentToken);
-  // const location = useSelector(selectCurrentLocation);
-    
+  const location = useSelector(selectCurrentLocation);
+      
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BASEURL}/user/details`, {
       headers: {
@@ -75,9 +75,7 @@ const PostsContent = ({ home, category, page }) => {
     if (!filter) {
       fetchPost();
     }
-  }, [skip, query,
-    //  location
-    ]);
+  }, [skip, query, location]);
 
   const read = async (skip) => {
     if (category) {
