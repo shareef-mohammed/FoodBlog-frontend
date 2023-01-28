@@ -5,7 +5,7 @@ const locationSlice = createSlice({
   initialState: { location:'' },
   reducers: {
     setLocationCredentials: (state, action) => {
-        console.log('object',action.payload)
+        
       const name  = action.payload;
       state.name = name;
       
