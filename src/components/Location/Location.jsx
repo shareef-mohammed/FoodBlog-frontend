@@ -37,6 +37,7 @@ const Location = ({ opened, onClose, user, button }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const id = user._id;
+  
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BASEURL}/posts/Locations`, {
       headers: {

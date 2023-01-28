@@ -198,13 +198,13 @@ const PostsContent = ({ home, category, page }) => {
                   Add a Post
                 </span>
               </button>
-              {/* <AddPost
+              <AddPost
                 open={isPost}
                 id={user._id}
                 onClose={() => {
                   setIsPost(false);
                 }}
-              /> */}
+              />
               
         </div>
         

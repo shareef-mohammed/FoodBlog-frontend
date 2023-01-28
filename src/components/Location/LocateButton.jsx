@@ -2,18 +2,17 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectCurrentToken, selectCurrentUser } from "../../features/auth/authSlice";
+import { selectCurrentToken } from "../../features/auth/authSlice";
 import Location from "./Location";
 
 const LocateButton = ({ page }) => {
   const [location, setLocation] = useState(false);
   const [user, setUser] = useState("");
-  const name = useSelector(selectCurrentUser);
-  
+    
   const token = useSelector(selectCurrentToken)
 
   useEffect(() => {
-    if (name) {
+    if (token) {
       fetch(`${process.env.REACT_APP_BASEURL}/user/details`, {
         headers: {
           "Content-Type": "application/json",
@@ -29,6 +28,8 @@ const LocateButton = ({ page }) => {
         });
     }
   }, [location]);
+
+  console.log(user)
 
   if (location)
     return (
