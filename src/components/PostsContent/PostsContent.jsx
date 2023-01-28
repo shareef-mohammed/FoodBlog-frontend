@@ -175,6 +175,8 @@ const PostsContent = ({ home, category, page }) => {
     });
   };
   
+  console.log(user)
+
   if (loader) return <Loader />;
   return (
     <>
@@ -197,13 +199,13 @@ const PostsContent = ({ home, category, page }) => {
                   Add a Post
                 </span>
               </button>
-              <AddPost
+              {user && <AddPost
                 open={isPost}
                 id={user._id}
                 onClose={() => {
                   setIsPost(false);
                 }}
-              />
+              />}
               
         </div>
         
