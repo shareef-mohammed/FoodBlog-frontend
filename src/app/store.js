@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 import locationReducer from '../features/location/LocationSlice'
+import postReducer from '../features/post/PostSlice'
 
 const persistConfig = {
   key: "root",
@@ -13,7 +14,8 @@ const persistConfig = {
 const reducer = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
   auth: authReducer,
-  location: locationReducer
+  location: locationReducer,
+  post: postReducer
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 export const store = configureStore({

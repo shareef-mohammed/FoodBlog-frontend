@@ -10,6 +10,7 @@ import Filter from "./Filter";
 import { useCallback } from "react";
 import AddPost from "../AddPost/AddPost";
 import { selectCurrentLocation } from "../../features/location/LocationSlice";
+import { selectCurrentPost } from "../../features/post/PostSlice";
 
 const PostsContent = ({ home, category, page }) => {
   const [posts, setPosts] = useState([]);
@@ -30,6 +31,7 @@ const PostsContent = ({ home, category, page }) => {
   const name = useSelector(selectCurrentUser);
   const token = useSelector(selectCurrentToken);
   const location = useSelector(selectCurrentLocation);
+  const post = useSelector(selectCurrentPost)
       
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BASEURL}/user/details`, {
@@ -75,7 +77,7 @@ const PostsContent = ({ home, category, page }) => {
     if (!filter) {
       fetchPost();
     }
-  }, [skip, query, location]);
+  }, [skip, query, location, post]);
 
   const read = async (skip) => {
     if (category) {

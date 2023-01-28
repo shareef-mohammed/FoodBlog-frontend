@@ -70,7 +70,7 @@ const Location = ({ opened, onClose, button }) => {
       .catch((err) => {
         navigate('/PageNotFound')
       });
-  }, [user]);
+  }, []);
 
   const setLocality = (place) => {
     const id = user._id;
