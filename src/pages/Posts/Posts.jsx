@@ -30,7 +30,7 @@ const Posts = () => {
   return (
     <div>
       <Navba user={user} posts={true} />
-      <PostsContent user={user} page={true} />
+      <PostsContent user={user}/>
       <Footer />
     </div>
   );
