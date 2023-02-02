@@ -87,6 +87,30 @@ const Follow = ({ user, pos }) => {
     setHide(!hide);
   };
 
+  const addToChat = async(receiverId) => {
+    try {
+      await fetch(`${process.env.REACT_APP_BASEURL}/chat`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "X-Custom-Header": `${token}`,
+        },
+        body: JSON.stringify({
+          senderId: user._id,
+          receiverId
+        }),
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.status === 'ok') {
+          navigate('/Chat')
+        }
+      })
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
   if (loader) return <Loader />;
   return (
     <div className="sm:w-[5%] md:w-[40%]  mb-auto px-3  pt-3 sticky top-36 right-0 md:border-l-2">
@@ -127,7 +151,7 @@ const Follow = ({ user, pos }) => {
             {follow ? "Unfollow" : "Follow"}
           </button>
             {
-              follow && <AiFillMessage onClick={() => navigate('/Chat')} className="ml-4 w-8 mt-3 text-pink-400 cursor-pointer h-8" />
+              follow && <AiFillMessage onClick={() => addToChat(pos.details[0]._id)} className="ml-4 w-8 mt-3 text-pink-400 cursor-pointer h-8" />
             }
           </div>
         )}

@@ -17,9 +17,9 @@ const ChatBox = ({ chat, currentUser, setSendMessage,  receivedMessage }) => {
 
   // Receive Message from parent component
 useEffect(()=> {
-  console.log("Message Arrived: ", receivedMessage)
+ 
   if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
-    console.log('ethi')
+    
     setMessages([...messages, receivedMessage]);
   }
 
@@ -82,6 +82,9 @@ useEffect(()=> {
   // Send Message
   const handleSend = async(e)=> {
     e.preventDefault()
+    if(newMessage.trim() === ''){
+      return;
+    }
     const message = {
       senderId : currentUser,
       text: newMessage,
@@ -119,29 +122,24 @@ useEffect(()=> {
   const imageRef = useRef();
   return (
     <>
-      <div className="ChatBox-container">
+      <div className="ChatBox-container ">
         {chat ? (
           <>
             {/* chat-header */}
             <div className="chat-header">
               <div className="follower">
-                <div>
+                <div className="flex">
                   <img
-                    src={
-                      userData?.profilePicture
-                        ? process.env.REACT_APP_PUBLIC_FOLDER +
-                          userData.profilePicture
-                        : process.env.REACT_APP_PUBLIC_FOLDER +
-                          "defaultProfile.png"
-                    }
+                    src={userData?.profilePic ? userData.profilePic : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }
                     alt="Profile"
-                    className="followerImage"
+                    className="followerImage rounded-full"
                     style={{ width: "50px", height: "50px" }}
                   />
-                  <div className="name" style={{ fontSize: "0.9rem" }}>
-                    <span>
-                      {userData?.firstname} {userData?.lastname}
+                  <div className="name p-2 " style={{ fontSize: "0.9rem" }}>
+                    <span className="text-xl font-bold">
+                      {userData?.userName}
                     </span>
+                    
                   </div>
                 </div>
               </div>
@@ -154,7 +152,7 @@ useEffect(()=> {
               />
             </div>
             {/* chat-body */}
-            <div className="chat-body" >
+            <div className="chat-body scrollbar-hide" >
               {messages.map((message) => (
                 <>
                   <div ref={scroll}
@@ -172,13 +170,13 @@ useEffect(()=> {
             </div>
             {/* chat-sender */}
             <div className="chat-sender">
-              <div onClick={() => imageRef.current.click()}>+</div>
+              {/* <div onClick={() => imageRef.current.click()}>+</div> */}
               <InputEmoji
                 value={newMessage}
                 onChange={handleChange}
               />
-              <div className="send-button button" onClick = {handleSend}>Send</div>
-              <input
+              <div className="bg-[#f0abfc] px-4 py-2 mr-4 text-white cursor-pointer rounded-lg" onClick = {handleSend}>Send</div>
+              <input 
                 type="file"
                 name=""
                 id=""

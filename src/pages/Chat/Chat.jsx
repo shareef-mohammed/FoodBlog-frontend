@@ -27,10 +27,11 @@ const Chat = () => {
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
   // Get the chat in chat section
+
   useEffect(() => {
     const getUserId = async() => {
       try {
-        await fetch(`${process.env.REACT_APP_BASEURL}/user/details/${name}`, {
+        await fetch(`${process.env.REACT_APP_BASEURL}/user/details`, {
           headers: {
             "Content-Type": "application/json",
             "X-Custom-Header": `${token}`,
@@ -48,6 +49,11 @@ const Chat = () => {
       }
     }
     getUserId()
+  },[])
+
+  
+  useEffect(() => {
+   
     const getChats = async () => {
       try {
         await fetch(`${process.env.REACT_APP_BASEURL}/chat/${user._id}`,{
@@ -82,51 +88,55 @@ const Chat = () => {
   // Send Message to socket server
   useEffect(() => {
     if (sendMessage!==null) {
-      socket.current.emit("send-message", sendMessage);}
+      socket.current.emit("send-message", sendMessage)
+    }
   }, [sendMessage]);
 
 
   // Get the message from socket server
-  useEffect(() => {
-    console.log('hsdjfsfsd')
-    socket.current.on("recieve-message", (data) => {
-      console.log('datarecsdfsdf')
-      console.log('datarec',data)
+  useEffect(() => {    
+    socket.current.on("receive-message", (data) => {      
       setReceivedMessage(data);
     }
-
     );
   }, []);
 
+  console.log(receivedMessage)
 
-  // const checkOnlineStatus = (chat) => {
-  //   const chatMember = chat.members.find((member) => member !== user._id);
-  //   const online = onlineUsers.find((user) => user.userId === chatMember);
-  //   return online ? true : false;
-  // };
+  const checkOnlineStatus = (chat) => {
+    const chatMember = chat.members.find((member) => member !== user._id);
+    const online = onlineUsers.find((user) => user.userId === chatMember);
+    return online ? true : false;
+  };
+
+  let status;
 
   return (
     <>
-    <Navbar/>
+    <Navbar chats={true} />
     <div className="Chat">
       {/* Left Side */}
       <div className="Left-side-chat"  >
         {/* <LogoSearch /> */}
-        <div className="Chat-container scrollbar-hidden">
-          <h2>Chats</h2>
+        <div className="Chat-container scrollbar-hide border-r">
+          <h2 className="text-xl font-bold">CHATS</h2>
           <div className="Chat-list">
-            {chats.map((chat) => (
-              <div
-                onClick={() => {
+            {chats.map((chat, i) => (
+              <div key={i}
+                onClick={(e) => {
+                  e.preventDefault()
                   setCurrentChat(chat);
+                  
                 }}
               >
                 <Conversation
                   data={chat}
                   currentUser={user._id}
-                  // online={checkOnlineStatus(chat)}
+                  online={checkOnlineStatus(chat)}
                 />
+                
               </div>
+              
             ))}
           </div>
         </div>
@@ -134,7 +144,7 @@ const Chat = () => {
 
       {/* Right Side */}
 
-      <div className="Right-side-chat">
+      <div className="Right-side-chat ">
         <div style={{ width: "20rem", alignSelf: "flex-end" }}>
           {/* <NavIcons /> */}
         </div>
@@ -143,10 +153,11 @@ const Chat = () => {
           currentUser={user._id}
           setSendMessage={setSendMessage}
           receivedMessage={receivedMessage}
+          
         />
       </div>
     </div>
-    <Footer />
+    {/* <Footer /> */}
     </>
   );
 };

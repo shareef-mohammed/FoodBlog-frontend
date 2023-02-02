@@ -14,7 +14,7 @@ import ConfirmLogout from "../ConfirmLogout/ConfirmLogout";
 import Loader from "../Loader/Loader";
 import { useEffect } from "react";
 
-const Navba = ({ home, posts, profile }) => {
+const Navba = ({ home, posts, profile, chats }) => {
   const token = useSelector(selectCurrentToken);
   const name = useSelector(selectCurrentUser);
 
@@ -148,6 +148,22 @@ const Navba = ({ home, posts, profile }) => {
                 PROFILE
               </li>
               <li
+                className={
+                  chats
+                    ? "m-4 px-4 pt-2 rounded-xl cursor-pointer bg-white"
+                    : "m-4 pt-2 px-4 cursor-pointer"
+                }
+                onClick={() => {
+                  setLoader(true);
+                  setTimeout(() => {
+                    navigate("/Chat");
+                    setLoader(false);
+                  }, 500);
+                }}
+              >
+                CHATS
+              </li>
+              <li
                 className="m-4 p-2 cursor-pointer"
                 onClick={() => {
                   setLog(true);
@@ -266,6 +282,22 @@ const Navba = ({ home, posts, profile }) => {
                   }}
                 >
                   PROFILE
+                </li>
+                <li
+                  className={
+                    chats
+                      ? "p-4 bg-[#f0abfc] rounded-md font-semibold text-white text-lg"
+                      : "p-4 border-b border-gray-600"
+                  }
+                  onClick={() => {
+                    setLoader(true);
+                    setTimeout(() => {
+                      navigate("/Chat");
+                      setLoader(false);
+                    }, 500);
+                  }}
+                >
+                  CHATS
                 </li>
                 <li
                   className="p-4 border-b border-gray-600"

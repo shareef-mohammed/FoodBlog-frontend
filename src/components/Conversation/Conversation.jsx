@@ -37,18 +37,18 @@ const Conversation = ({ data, currentUser, online }) => {
   }, [])
   return (
     <>
-      <div className="follower conversation">
-        <div className="">
+      <div className="follower conversation ">
+        <div className="flex">
           {online && <div className="online-dot"></div>}
           <img
             src={userData?.profilePic ? userData.profilePic : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" }
             alt="Profile"
-            className="followerImage"
+            className="followerImage rounded-full "
             style={{ width: "50px", height: "50px" }}
           />
-          <div className="name" style={{fontSize: '0.8rem'}}>
-            <span>{userData?.userName}</span>
-            <span style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span>
+          <div className="name mx-2" style={{fontSize: '0.8rem'}}>
+            <span className="text-lg font-semibold">{userData?.userName}</span> <br />
+            <span className="text-xs" style={{color: online?"#51e200":""}}>{online? "Online" : "Offline"}</span>
           </div>
         </div>
       </div>
