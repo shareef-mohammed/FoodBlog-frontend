@@ -16,10 +16,12 @@ import {
 const LineChar = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate()
+  const token = localStorage.getItem('adminToken')
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BASEURL}/admin/postChartData`, {
       headers: {
         "Content-Type": "application/json",
+        "X-Custom-Header": `${token}`
       },
     })
       .then((res) => res.json())

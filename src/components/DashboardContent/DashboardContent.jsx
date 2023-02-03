@@ -7,10 +7,12 @@ const DashboardContent = () => {
   const [count, setCount] = useState("");
   const [totCount, setTotCount] = useState("");
   const navigate = useNavigate()
+  const token = localStorage.getItem('adminToken')
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BASEURL}/admin/userCounts`, {
       headers: {
         "Content-Type": "application/json",
+        "X-Custom-Header": `${token}`
       },
     })
       .then((res) => res.json())
@@ -19,6 +21,7 @@ const DashboardContent = () => {
           
           return navigate('/PageNotFound')
         }
+        
         setCount(data.count);
         setTotCount(data.totCount);
       })
@@ -31,8 +34,8 @@ const DashboardContent = () => {
       <div className="flex w-[100%] mt-3">
         <div className="w-[50%] text-center bg-[#f5d0fe] mx-4  rounded-md">
           <br />
-          <h4 className="">This week</h4>
-          <h3>Users</h3>
+          <h4 className="">This week - Users</h4>
+          
           <h2>{count}</h2>
         </div>
         <div className="w-[50%] text-center bg-[#f5d0fe] mx-4  rounded-md">

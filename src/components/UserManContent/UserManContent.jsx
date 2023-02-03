@@ -81,7 +81,7 @@ const UserManContent = () => {
       className="w-80% text-center h-[700px] overflow-scroll scrollbar-hide p-4"
       onScroll={handleScroll}
     >
-      <div className="text-end ">
+      <div className="text-end ">toLowerCase
         <input
           type="text"
           className="w-96 h-10 pl-2 my-4 border-2 rounded-md"

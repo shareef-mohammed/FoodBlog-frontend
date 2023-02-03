@@ -101,7 +101,7 @@ const Chat = () => {
     );
   }, []);
 
-  console.log(receivedMessage)
+  // console.log(receivedMessage)
 
   const checkOnlineStatus = (chat) => {
     const chatMember = chat.members.find((member) => member !== user._id);
@@ -114,7 +114,7 @@ const Chat = () => {
   return (
     <>
     <Navbar chats={true} />
-    <div className="Chat">
+    <div className="Chat max-w-[1255px]">
       {/* Left Side */}
       <div className="Left-side-chat"  >
         {/* <LogoSearch /> */}
