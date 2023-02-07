@@ -58,7 +58,7 @@
     align-self: end;
 }
 .chat-sender>input{
-    height: 70%;
+    height: 60%;
     background-color: rgb(236, 236, 236);
     border-radius: 0.5rem;
     border: none;
@@ -78,6 +78,6 @@
     cursor: pointer
 }
 .chat-sender>div{
-    height: 70%;
-    padding: 0px 15px 0px 15px;
+    height: 100%;
+    padding: 3px 15px 0px 15px;
 }

@@ -169,13 +169,13 @@ useEffect(()=> {
               ))}
             </div>
             {/* chat-sender */}
-            <div className="chat-sender">
+            <div className="chat-sender ">
               {/* <div onClick={() => imageRef.current.click()}>+</div> */}
               <InputEmoji
                 value={newMessage}
                 onChange={handleChange}
               />
-              <div className="bg-[#f0abfc] px-4 py-2 mr-4 text-white cursor-pointer rounded-lg" onClick = {handleSend}>Send</div>
+              <div className="bg-[#f0abfc] w-16 mr-4 h-16 p-4 text-white cursor-pointer rounded-lg" onClick = {handleSend}>Send</div>
               <input 
                 type="file"
                 name=""
